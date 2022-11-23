@@ -1741,7 +1741,10 @@ fieldset[disabled] .radio-custom label {
     -webkit-overflow-scrolling: touch;
     overflow-y: scroll
 }
-
+.phone-body::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
 .wechat-content {
     padding: 36px
 }
