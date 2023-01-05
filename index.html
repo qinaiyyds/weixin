@@ -20,6 +20,7 @@
 	<link rel="stylesheet" href="static/app/css/wallet.css">
 	<script type="text/javascript" src="static/app/js/common.bundle.js"></script>
 	<script type="text/javascript" src="static/app/js/chat.bundle.js"></script>
+	<script src="static/app/js/html2canvas.min.js"></script>
 </head>
 <body>
 	<div id="vueApp" class="wrapper">
@@ -109,7 +110,7 @@
 						<!-- 对话设置 -->
 						<div class="tab-pane" id="tabContent2">
 							<div class="dialog-user">
-								<div class="dialog-user-title">编辑和选择用户（<font>第一个用户默认是自己</font>）</div>
+								<div class="dialog-user-title">编辑和选择用户（<font>第一个用户默认是自己，点击头像可更换头像哦</font>）</div>
 								<div class="dialog-user-items">
 									<div class="dialog-user-item el-remove">
 										<div class="dialog-user-face">
@@ -245,13 +246,16 @@
 									</div>
 									<button class="btn-clear" @click="cleanDialogs" href="javascript:;">清空聊天内容</button>
 									<button class="btn-clear" @click="save" href="javascript:;">生成图片</button>
+									<div style="margin-top: 20px;">生成视频功能: 点击下方的"开始录制"按钮即可录制视频（停止录制后会在右侧生成视频，您可以下载该视频）</div>
+									<button class="btn-recording" id="btn-start-recording" style="background-color: null;">开始录制</button>
+									<button class="btn-recording" id="btn-stop-recording" disabled>停止录制</button>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<!-- phone -->
-				<div class="phone-wrap">
+				<div class="phone-wrap" id="element-to-record">
 					<div class="phone-content">
 						<div id="phone" class="phone">
 							<div class="phone-top">
@@ -558,10 +562,13 @@
 						</div>
 					</div>
 				</div>
+				<div style="display: none; margin-left: 10px;">
+					<video controls autoplay playsinline id="preview-video"></video>
+				</div>
+				<canvas id="background-canvas" style="position: absolute; left: -99999px;"></canvas>
 			</div>
 		</div>
 	</div>
 	<a style="display: none;" id="lightBoxToggle" href="javascript:;" data-width="300" data-caption="右击图片，点击图片另存为即可下载图片">生成图片</a>
 </body>
-
 </html>
