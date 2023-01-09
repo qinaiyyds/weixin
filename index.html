@@ -2,15 +2,9 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>在线微信对话生成器</title>
-	<meta name="keywords" content="免费在线微信对话生成器" />
-	<meta name="description" content="在线微信对话生成器是一款在线微信聊天对话制作的工具" />
-	<meta name="render" content="webkit">
-	<link rel="icon" href="favicon.png">
-	<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
-	<meta content="telephone=no, address=no" name="format-detection">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线微信对话生成器 By 追风少年</title>
 	<script type="text/javascript">
 		var _path = { images: '' }
 		var page = { data: {} }
@@ -21,19 +15,22 @@
 	<script type="text/javascript" src="static/app/js/common.bundle.js"></script>
 	<script type="text/javascript" src="static/app/js/chat.bundle.js"></script>
 	<script src="static/app/js/html2canvas.min.js"></script>
+	<!-- gif -->
+	<script src="./static/app/js/gif.js"></script>
+	<script src="./static/app/js/gif.worker.js"></script>
 </head>
 <body>
 	<div id="vueApp" class="wrapper">
-		<div class="container-fluid page-content">
-			<div id="pageHeader">微信对话生成器</div>
+		<div class="container-fluid page-content" style="margin-top: 10px;">
+			<!-- <div id="pageHeader">微信对话生成器</div> -->
 			<div class="edit-content">
 				<div class="tab">
 					<ul class="nav nav-tabs">
-						<li class="active"><a data-tab href="#tabContent1">外观设置</a></li>
-						<li><a data-tab href="#tabContent2">对话设置</a></li>
+						<li><a data-tab href="#tabContent1">外观设置</a></li>
+						<li class="active"><a data-tab href="#tabContent2">对话设置</a></li>
 					</ul>
 					<div class="tab-content">
-						<div class="tab-pane active" id="tabContent1">
+						<div class="tab-pane" id="tabContent1">
 							<!-- 外观设置 -->
 							<div class="view-setting">
 								<div class="view-set-item">
@@ -108,7 +105,7 @@
 							</div>
 						</div>
 						<!-- 对话设置 -->
-						<div class="tab-pane" id="tabContent2">
+						<div class="tab-pane active" id="tabContent2">
 							<div class="dialog-user">
 								<div class="dialog-user-title">编辑和选择用户（<font>第一个用户默认是自己，点击头像可更换头像哦</font>）</div>
 								<div class="dialog-user-items">
@@ -127,7 +124,7 @@
 										<div class="dialog-user-face">
 											<a class="dialog-user-face-a" href="javascript:;">
 												<input type="file" placeholder="点击更换头像">
-												<i style="background-image: url(/static/app/images/10014.jpg)"></i>
+												<i style="background-image: url(/static/app/images/user-face.png)"></i>
 											</a>
 											<input type="text" value="马先生" />
 											<a class="dialog-user-select">选择用户</a>
@@ -246,8 +243,12 @@
 									</div>
 									<button class="btn-clear" @click="cleanDialogs" href="javascript:;">清空聊天内容</button>
 									<button class="btn-clear" @click="save" href="javascript:;">生成图片</button>
-									<div style="margin-top: 20px;">生成视频功能: 点击下方的"开始录制"按钮即可录制视频（停止录制后会在右侧生成视频，您可以下载该视频）</div>
-									<button class="btn-recording" id="btn-start-recording" style="background-color: null;">开始录制</button>
+									<button class="btn-clear" id="downGif">生成GIF</button>
+									<div style="margin-top: 20px;">
+										<p>生成视频功能: 点击下方的"开始录制"按钮即可录制视频（停止录制后会在右侧生成视频，您可以下载该视频）</p>
+										<p>生成GIF图片: 点击下方的"开始录制"按钮即可生成动态图片（停止录制后点击上方的"生成GIF"按钮下载GIF图片）</p>
+									</div>
+									<button class="btn-recording" id="btn-start-recording">开始录制</button>
 									<button class="btn-recording" id="btn-stop-recording" disabled>停止录制</button>
 								</div>
 							</div>
@@ -568,6 +569,7 @@
 				<canvas id="background-canvas" style="position: absolute; left: -99999px;"></canvas>
 			</div>
 		</div>
+		<!-- <canvas id="background-canvas" style="position: absolute; left: -99999px;"></canvas> -->
 	</div>
 	<a style="display: none;" id="lightBoxToggle" href="javascript:;" data-width="300" data-caption="右击图片，点击图片另存为即可下载图片">生成图片</a>
 </body>
